@@ -13,7 +13,7 @@ import { join } from 'path';
       isGlobal: true,
     }),
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'client'),
+      rootPath: join(__dirname, '..', '..', 'client', 'public'),
     }),
     ComplaintModule,
     MongooseModule.forRoot(process.env.MONGODB_URI!),

@@ -1,9 +1,16 @@
 import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
 import { ComplaintController } from './complaint.controller';
 import { ComplaintService } from './complaint.service';
+import { Complaint, ComplaintSchema } from './complaint.schema';
 
 @Module({
+  imports: [
+    MongooseModule.forFeature([
+      { name: Complaint.name, schema: ComplaintSchema },
+    ]),
+  ],
   controllers: [ComplaintController],
-  providers: [ComplaintService]
+  providers: [ComplaintService],
 })
 export class ComplaintModule {}
