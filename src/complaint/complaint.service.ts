@@ -17,4 +17,8 @@ export class ComplaintService {
     const createdComplaint = new this.complaintModel(createComplaintDto);
     return createdComplaint.save();
   }
+
+  async findAllComplaints(): Promise<Complaint[]> {
+    return this.complaintModel.find().exec();
+  }
 }
