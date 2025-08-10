@@ -17,7 +17,7 @@ export class ComplaintController {
   }
 
   @Post('admin')
-  async updateAdminPassword(
+  async validateAdminPassword(
     @Body('password') password: string,
     @Res() res: Response,
   ): Promise<void> {
@@ -27,6 +27,7 @@ export class ComplaintController {
     res.status(401).json({ message: 'Unauthorized: Invalid admin password' });
     return;
   }
+
 
   @Get()
   async findAllComplaints(): Promise<Complaint[]> {
