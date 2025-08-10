@@ -17,7 +17,7 @@ export class ComplaintController {
   }
 
   @Post('admin')
-  async updateAdminPassword(
+  async validateAdminPassword(
     @Body('password') password: string,
     @Res() res: Response,
   ): Promise<void> {
@@ -28,6 +28,7 @@ export class ComplaintController {
     return;
   }
 
+
   @Get()
   async findAllComplaints(): Promise<Complaint[]> {
     return this.complaintService.findAllComplaints();
@@ -36,7 +37,12 @@ export class ComplaintController {
   @Post('del')
   async deleteComplaintById(
     @Body('complaintId') id: string,
-  ): Promise<Complaint | null> {
-    return this.complaintService.deleteComplaintById(id);
+    @Res() res: Response,
+  ): Promise<Response | null> {
+    const deletedComplaint = this.complaintService.deleteComplaintById(id);
+    if (deletedComplaint) {
+      return res.status(200).json(deletedComplaint);
+    }
+    return res.status(404).json({ message: 'Complaint not found' });
   }
 }
