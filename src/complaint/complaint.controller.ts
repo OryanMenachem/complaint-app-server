@@ -1,8 +1,9 @@
-import { Body, Controller, Post, Get, Res } from '@nestjs/common';
+import { Body, Controller, Post, Get, Res, Delete } from '@nestjs/common';
 import { CreateComplaintDto } from './dto/create-complaint.dto';
 import { ComplaintService } from './complaint.service';
 import { Complaint } from './complaint.schema';
 import type { Response } from 'express';
+import { Types } from 'mongoose';
 
 @Controller('complaints')
 export class ComplaintController {
@@ -30,5 +31,12 @@ export class ComplaintController {
   @Get()
   async findAllComplaints(): Promise<Complaint[]> {
     return this.complaintService.findAllComplaints();
+  }
+
+  @Post('del')
+  async deleteComplaintById(
+    @Body('complaintId') id: string,
+  ): Promise<Complaint | null> {
+    return this.complaintService.deleteComplaintById(id);
   }
 }
