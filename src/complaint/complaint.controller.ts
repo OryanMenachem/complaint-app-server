@@ -2,9 +2,7 @@ import { Body, Controller, Post, Get, Res } from '@nestjs/common';
 import { CreateComplaintDto } from './dto/create-complaint.dto';
 import { ComplaintService } from './complaint.service';
 import { Complaint } from './complaint.schema';
-import { join } from 'path';
 import type { Response } from 'express';
-import { ServeStaticModule } from '@nestjs/serve-static';
 
 @Controller('complaints')
 export class ComplaintController {
