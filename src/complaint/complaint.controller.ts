@@ -36,7 +36,12 @@ export class ComplaintController {
   @Post('del')
   async deleteComplaintById(
     @Body('complaintId') id: string,
-  ): Promise<Complaint | null> {
-    return this.complaintService.deleteComplaintById(id);
+    @Res() res: Response,
+  ): Promise<Response | null> {
+    const deletedComplaint = this.complaintService.deleteComplaintById(id);
+    if (deletedComplaint) {
+      return res.status(200).json(deletedComplaint);
+    }
+    return res.status(404).json({ message: 'Complaint not found' });
   }
 }
