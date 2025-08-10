@@ -42,6 +42,7 @@ The server runs on port `3000` by default. You can set a custom port with the `P
 
 - `MONGODB_URI` – MongoDB connection string (required)
 
+
 Create a `.env` file in the root with your variables.
 
 ## API Endpoints
