@@ -21,4 +21,8 @@ export class ComplaintService {
   async findAllComplaints(): Promise<Complaint[]> {
     return this.complaintModel.find().exec();
   }
+
+  async deleteComplaintById(id: string): Promise<Complaint | null> {
+    return this.complaintModel.findByIdAndDelete(id).exec();
+  }
 }
